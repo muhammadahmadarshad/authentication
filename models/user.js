@@ -1,7 +1,7 @@
 const mongoose=require('mongoose')
 const joi=require('joi')
 const jwt=require("jsonwebtoken")
-const config=require('../config/default')
+const config=require('config')
 const User=mongoose.Schema({
     first_name:{type:String,required:true},
     last_name:{type:String,required:true},
@@ -19,7 +19,7 @@ const token=jwt.sign({
     password:this.password,
     email:this.email,
 
-},config["jwt-key"]);
+},config.get("jwt-key"));
 
 return token;
 
