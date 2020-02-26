@@ -19,7 +19,7 @@ app.use(cors())
 app.use(express.json())
 app.use('/',User)
 
-const port= process.env.PORT || 8080;
+const port= process.env.PORT || 5000;
 server.listen(8080, () => {
     console.log('Server starte listening at localhost:8080')
 })
