@@ -10,7 +10,6 @@ const server = http.createServer(express);
 mongoose.connect(
     'mongodb+srv://Ahmad:ahmad123@users-skp63.mongodb.net/test?retryWrites=true&w=majority',{
         useNewUrlParser:true,
-        useUnifiedTopology:true,
         useCreateIndex:true
     }
 ).then((res) => console.log('connected')).catch(err => console.log(err));
