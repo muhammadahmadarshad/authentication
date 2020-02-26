@@ -6,14 +6,14 @@ const mongoose = require('mongoose')
 const cors=require('cors')
 
 const server = http.createServer(express);
-
+/*
 mongoose.connect(
     'mongodb+srv://Ahmad:ahmad123@cluster0-skp63.mongodb.net/test?retryWrites=true&w=majority',{
         useNewUrlParser:true,
         useCreateIndex:true
     }
 ).then((res) => console.log('connected')).catch(err => console.log(err));
-
+*/
 app.use(cors())
 app.use(express.json())
 app.use('/',User)
