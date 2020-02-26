@@ -20,5 +20,5 @@ app.use('/',User)
 
 const port= process.env.PORT || 5000;
 server.listen(port, () => {
-    console.log('Server starte listening at localhost:8080')
+    console.log(`Server starte listening at localhost:${port}`)
 })
