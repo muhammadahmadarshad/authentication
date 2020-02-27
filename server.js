@@ -20,7 +20,7 @@ app.get("/check",function(req,res){
 app.use('/',User)
 
 
-const port= process.env.PORT || 5000;
+const port= process.env.PORT || 8080;
 app.listen(port, () => {
     console.log(`Server starte listening at localhost:${port}`)
 })
