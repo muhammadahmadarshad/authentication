@@ -5,9 +5,10 @@ const auth=require('../middlewares/auth')
 router.post('/signup',async (req,res)=>{
 
     const {body}=req;
+    console.log(body)
     const {error}=Validation(body)
     if(error)
-        res.send(error.details[0].message)
+        res.status(400).send(error.details[0].message)
 
     let user=await UserSchema.findOne({email:body.email})
     console.log(user)
@@ -27,7 +28,9 @@ router.post('/signup',async (req,res)=>{
 router.post("/login", async(req,res)=>{
 
     const {body}=req
-    user=await UserSchema.findOne({email:body.email})
+    console.log(body)
+    const user=await UserSchema.findOne({email:body.email})
+    console.log(user)
     if(!user)
     {
         res.status(400).send("Invalid Email or Password.")
