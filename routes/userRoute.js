@@ -42,6 +42,11 @@ router.post("/login", async(req,res)=>{
 
 })
 
+router.get("/",(req,res)=>{
+
+    res.send("Hello")
+})
+
 
 router.get("/me",auth,async(req,res)=>{
 
