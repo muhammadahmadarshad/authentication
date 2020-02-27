@@ -15,7 +15,11 @@ mongoose.connect(
 ).then((res) => console.log('connected')).catch(err => console.log(err));
 app.use(cors())
 app.use(express.json())
+app.get("/check",function(req,res){
+    res.send("Hello Baby")
+})
 app.use('/',User)
+
 
 const port= process.env.PORT || 5000;
 server.listen(port, () => {
