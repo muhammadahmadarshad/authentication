@@ -8,9 +8,9 @@ const cors=require('cors')
 const server = http.createServer(express);
 
 mongoose.connect(
-    'mongodb+srv://ahmad:ahmad@cluster0-cohyu.mongodb.net/test?retryWrites=true&w=majority',{
+    'mongodb+srv://Ahmad:Ahmad78965@cluster0-copnl.mongodb.net/test?retryWrites=true&w=majority',{
         useNewUrlParser:true,
-        useCreateIndex:true
+        useCreateIndex:true,useUnifiedTopology:true
     }
 ).then((res) => console.log('connected')).catch(err => console.log(err));
 app.use(cors())
