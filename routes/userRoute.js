@@ -1,17 +1,24 @@
-const router=require('express').Router()
+const express=require('express')
+const router=express.Router()
 const {UserSchema,Validation}=require('../models/user')
 const bycrypt=require('bcryptjs')
 const auth=require('../middlewares/auth')
 router.post('/signup',async (req,res)=>{
-
     const {body}=req;
     console.log(body)
     const {error}=Validation(body)
     if(error)
         res.status(400).send(error.details[0].message)
 
-    let user=await UserSchema.findOne({email:body.email})
-    console.log(user)
+    let user;
+    UserSchema.findOne({email:body.email})
+    .then(res=>{
+        user=res
+    })
+    .catch(err=>{
+        console.log("Error.")
+    })
+   
     if(user)
         res.status(400).send("Already exists.")
     
@@ -19,7 +26,13 @@ router.post('/signup',async (req,res)=>{
            let User=new UserSchema(body)
            const salt= await  bycrypt.genSalt(10)
            User.password=await bycrypt.hash(User.password,salt)
-           await User.save()
+            User.save().then((res)=>{
+                console.log("User saved.")
+
+            })
+            .catch(()=>{
+                console.log("not saved")
+            })
            const token=User.generateAuthToken()
         res.header('auth',token)
         .send(token)
