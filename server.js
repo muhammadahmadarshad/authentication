@@ -12,7 +12,7 @@ mongoose.connect('mongodb+srv://Ahmad:Ahmad78965@cluster0-copnl.mongodb.net/test
         useCreateIndex:true,useUnifiedTopology:true
     }
 ).then((res) => console.log('connected')).catch(err => console.log(err));
-
+app.use(cors())
 app.use(express.json())
 app.get("/check",function(req,res){
     res.send("Hello Baby")
@@ -20,7 +20,7 @@ app.get("/check",function(req,res){
 app.use('/',User)
 
 
-const port= process.env.PORT || 8080;
+const port= process.env.PORT || 5000;
 app.listen(port, () => {
     console.log(`Server starte listening at localhost:${port}`)
 })
