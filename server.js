@@ -14,9 +14,7 @@ mongoose.connect('mongodb+srv://Ahmad:Ahmad78965@cluster0-copnl.mongodb.net/test
 ).then((res) => console.log('connected')).catch(err => console.log(err));
 app.use(cors())
 app.use(express.json())
-app.get("/check",function(req,res){
-    res.send("Hello Baby")
-})
+
 app.use('/',User)
 
 

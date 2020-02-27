@@ -22,8 +22,19 @@ router.post('/signup',async (req,res)=>{
            let i =await User.save()
            console.log(i)
            const token=User.generateAuthToken()
-        res.header('auth',token)
-        .send(token)
+           if(token)
+           {
+            res.header('auth',token)
+            .send({
+                   token,
+                   authentication:true        
+               })
+           }
+           res.status(400).send({
+               token,
+               authentication:false        
+           })
+
 })
 
 router.post("/login", async(req,res)=>{
@@ -40,15 +51,19 @@ router.post("/login", async(req,res)=>{
     if (!validPassword) 
         return res.status(400).send("Invalid Email or Password.");
     const token=user.generateAuthToken()   
+    if(token)
+    {
+        res.send({
+            token,
+            authentication:true        
+        })
+    }
+    res.status(400).send({
+        token,
+        authentication:false        
+    })
 
-    res.send(token)
 
-
-})
-
-router.get("/",(req,res)=>{
-
-    res.send("Hello")
 })
 
 
