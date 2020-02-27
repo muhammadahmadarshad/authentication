@@ -10,14 +10,7 @@ router.post('/signup',async (req,res)=>{
     if(error)
         res.status(400).send(error.details[0].message)
 
-    let user;
-    UserSchema.findOne({email:body.email})
-    .then(res=>{
-        user=res
-    })
-    .catch(err=>{
-        console.log("Error.")
-    })
+    let user=await UserSchema.findOne({email:body.email})
    
     if(user)
         res.status(400).send("Already exists.")
@@ -26,13 +19,8 @@ router.post('/signup',async (req,res)=>{
            let User=new UserSchema(body)
            const salt= await  bycrypt.genSalt(10)
            User.password=await bycrypt.hash(User.password,salt)
-            User.save().then((res)=>{
-                console.log("User saved.")
-
-            })
-            .catch(()=>{
-                console.log("not saved")
-            })
+           let i =await User.save()
+           console.log(i)
            const token=User.generateAuthToken()
         res.header('auth',token)
         .send(token)
@@ -65,7 +53,7 @@ router.get("/",(req,res)=>{
 
 
 router.get("/me",auth,async(req,res)=>{
-
+    console.log(req.user)
     const result=await UserSchema.findById(req.user._id)
     res.send(result)
 })
